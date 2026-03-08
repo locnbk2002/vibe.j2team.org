@@ -94,8 +94,46 @@ Read `docs/DESIGN_SYSTEM.md` before making any visual changes.
 4. **No duplicate sub-apps** — check existing directories in `src/views/` before creating a new page
 5. **Each sub-page is self-contained** — only work within your page's directory, do not modify shared files (`App.vue`, `main.css`, `router/index.ts`). Routes are auto-generated from the `meta.ts` file in each page directory
 6. **Responsive** — pages must display well on mobile
-7. **No new dependencies** in `package.json` unless truly needed and approved
+7. **No new dependencies** in `package.json` unless truly needed and approved. However, the following libraries are **pre-approved** and can be used freely without additional approval:
+   - `@vueuse/core` — Collection of 200+ Vue composables (useMouse, useClipboard, useDark, useStorage, etc.)
+   - `@iconify/vue` — 200,000+ icons from 150+ icon sets in one component
+   - `vue-konva` — 2D canvas library for drawing, games, and interactive graphics
+   - `shiki` — Syntax highlighter
 8. **Author attribution required** — every page must have an `author` field in its `meta.ts` file
+
+## Recommended Internal Structure
+
+For apps with 4+ files, follow this recommended structure inside `src/views/<app-name>/`:
+
+```
+src/views/<app-name>/
+  index.vue              # Required: page entry point
+  meta.ts                # Required: page metadata
+  components/            # Recommended: Vue components used by the page
+  composables/           # Recommended: composition functions (use-*.ts)
+  types.ts               # Recommended: TypeScript type definitions
+  utils/                 # Recommended: pure utility functions
+  assets/                # Recommended: images, sounds, CSS (processed by Vite)
+```
+
+Simple apps (just a single page) only need `index.vue` + `meta.ts`.
+
+### Static Assets Convention
+
+- `src/views/<app-name>/assets/` — images, sounds, CSS that Vite will hash and optimize. **Use this for most cases.**
+- `public/<app-name>/` — large media files (videos, large image sets) served as-is without Vite processing. Accessible at `/<app-name>/filename.ext`.
+
+### Shared Utilities (opt-in)
+
+Reusable code used by 3+ apps can live in the shared layer:
+
+```
+src/components/shared/     # Shared UI components
+src/composables/shared/    # Shared composables
+src/utils/shared/          # Shared utility functions
+```
+
+Apps can import from these directories but are never required to. Each app remains self-contained by default.
 
 ## Adding a New Page
 
