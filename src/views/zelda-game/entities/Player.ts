@@ -114,8 +114,8 @@ export class Player extends BaseEntity {
     this.animation.update(dt)
   }
 
-  override takeDamage(amount: number): boolean {
-    if (this.combat.isBlocking()) {
+  override takeDamage(amount: number, skipShieldReduction = false): boolean {
+    if (!skipShieldReduction && this.combat.isBlocking()) {
       const reduced = Math.max(0, amount - SHIELD_FLAT_BLOCK)
       if (reduced === 0) {
         audio.playBlock()

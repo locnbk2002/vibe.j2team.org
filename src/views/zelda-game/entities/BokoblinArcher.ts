@@ -50,8 +50,12 @@ export class BokoblinArcher extends Enemy {
     const dy = player.pos.y - this.pos.y
     const dist = Math.sqrt(dx * dx + dy * dy)
 
-    // RT#6: division-by-zero guard
-    if (dist < 0.001) return
+    // RT#6: division-by-zero guard — still tick timers/animation before returning
+    if (dist < 0.001) {
+      this.updateInvulnerability(dt)
+      this.animation.update(dt)
+      return
+    }
 
     // Determine facing direction toward player
     if (Math.abs(dx) > Math.abs(dy)) {

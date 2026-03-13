@@ -97,11 +97,12 @@ export class ProjectileManager {
         const playerAABB = player.getAABB()
         if (this.projectileHitsAABB(p, playerAABB)) {
           if (player.isBlocking() && this.isFacingProjectile(player.direction, p)) {
-            // Directional shield block — reduce damage by flat block amount
+            // Directional shield block — apply flat reduction here; pass skipShieldReduction=true
+            // to Player.takeDamage so it does not reduce again (avoids double-reduction).
             const blocked = Math.max(0, p.damage - SHIELD_FLAT_BLOCK)
             this.onBlock?.(p.x, p.y)
             if (blocked > 0) {
-              if (player.takeDamage(blocked)) {
+              if (player.takeDamage(blocked, true)) {
                 this.onPlayerHit?.(blocked)
               }
             }

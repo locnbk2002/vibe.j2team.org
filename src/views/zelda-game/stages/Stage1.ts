@@ -384,7 +384,7 @@ export class Stage1 implements IStage {
   }
 
   isItemGetActive(): boolean {
-    return this.keyCollected && !this.chestOpened
+    return this.itemGetActive
   }
 
   getStats(): { enemiesDefeated: number; damageTaken: number } {

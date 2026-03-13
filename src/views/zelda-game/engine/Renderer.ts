@@ -234,8 +234,9 @@ export class Renderer {
     weapons.forEach((w, index) => {
       const x = startX + index * (size + spacing)
 
-      // Slot Background
+      // Slot Background — always filled; active slot gets an additional glow outline
       ctx.fillStyle = w.unlocked ? '#1F2937' : '#111827'
+      ctx.fillRect(x, y, size, size)
       if (w.active) {
         ctx.save()
         ctx.shadowColor = w.color
@@ -245,9 +246,6 @@ export class Renderer {
         ctx.strokeRect(x, y, size, size)
         ctx.shadowBlur = 0
         ctx.restore()
-      } else {
-        ctx.fillStyle = '#1F2937'
-        ctx.fillRect(x, y, size, size)
       }
 
       // Icon

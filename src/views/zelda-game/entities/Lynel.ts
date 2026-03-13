@@ -301,26 +301,28 @@ export class Lynel extends Enemy {
 
       switch (this.direction) {
         case 'right':
-          this.slashHitbox = { x: center.x, y: center.y - width / 2, width: reach, height: width }
+          this.slashHitbox.x = center.x
+          this.slashHitbox.y = center.y - width / 2
+          this.slashHitbox.width = reach
+          this.slashHitbox.height = width
           break
         case 'left':
-          this.slashHitbox = {
-            x: center.x - reach,
-            y: center.y - width / 2,
-            width: reach,
-            height: width,
-          }
+          this.slashHitbox.x = center.x - reach
+          this.slashHitbox.y = center.y - width / 2
+          this.slashHitbox.width = reach
+          this.slashHitbox.height = width
           break
         case 'down':
-          this.slashHitbox = { x: center.x - width / 2, y: center.y, width: width, height: reach }
+          this.slashHitbox.x = center.x - width / 2
+          this.slashHitbox.y = center.y
+          this.slashHitbox.width = width
+          this.slashHitbox.height = reach
           break
         case 'up':
-          this.slashHitbox = {
-            x: center.x - width / 2,
-            y: center.y - reach,
-            width: width,
-            height: reach,
-          }
+          this.slashHitbox.x = center.x - width / 2
+          this.slashHitbox.y = center.y - reach
+          this.slashHitbox.width = width
+          this.slashHitbox.height = reach
           break
       }
 

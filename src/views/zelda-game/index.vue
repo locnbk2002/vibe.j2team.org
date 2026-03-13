@@ -80,7 +80,7 @@ onUnmounted(() => {
         to="/"
         class="inline-flex items-center gap-2 border border-border-default bg-bg-surface px-4 py-2 text-sm text-text-secondary transition hover:border-accent-coral hover:text-text-primary mb-4"
       >
-        &larr; Ve trang chu
+        &larr; Về trang chủ
       </RouterLink>
 
       <h1 class="font-display text-3xl sm:text-4xl font-bold text-accent-coral mb-4">

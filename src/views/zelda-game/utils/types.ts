@@ -157,7 +157,7 @@ export interface Projectile {
   active: boolean
   x: number
   y: number
-  dirX: number // normalized direction (-1, 0, or 1)
+  dirX: number // normalized direction (float in [-1, 1])
   dirY: number
   speed: number
   damage: number

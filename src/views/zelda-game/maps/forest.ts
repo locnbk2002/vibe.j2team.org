@@ -57,7 +57,7 @@ export function createForestMap(): TileMap {
 const tp = (col: number, row: number): Vec2 => ({ x: col * TILE_SIZE, y: row * TILE_SIZE })
 
 export const PLAYER_SPAWN = tp(16, 26)
-export const CHEST_POS = tp(2, 1)
+export const CHEST_POS = tp(3, 1)
 export const GATE_POSITIONS: Vec2[] = [tp(1, 5), tp(2, 5), tp(3, 5), tp(4, 5), tp(5, 5)]
 
 // Bokoblin spawn positions (routes generated randomly at runtime)
